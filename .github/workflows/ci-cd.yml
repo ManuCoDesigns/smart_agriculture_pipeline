@@ -65,6 +65,7 @@ jobs:
           context: .
           push: true
           tags: manu2138/smart_agriculture_pipeline:latest
+          platforms: linux/amd64,linux/arm64
 
   test:
     runs-on: ubuntu-latest
