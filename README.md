@@ -1,2 +1,1 @@
-# smart_agriculture_pipeline
-Repository for developing a CI/CD pipeline for the Smart Agriculture and Precision Farming System, utilizing IoT, machine learning, and edge computing technologies to optimize farming operations.
+This project aims to automate key farming processes such as irrigation, greenhouse climate control, and livestock monitoring using TypeScript. The main objective is to build a CI/CD pipeline for continuous integration and deployment.
