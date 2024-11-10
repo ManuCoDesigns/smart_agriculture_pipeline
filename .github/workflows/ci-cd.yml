@@ -1,0 +1,37 @@
+name: Simple CI for Smart Agriculture Pipeline
+
+# Trigger the workflow on push or pull requests to the main branch
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # Step 2: Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    # Step 3: Install dependencies
+    - name: Install dependencies
+      run: npm install
+
+    # Step 4: Compile TypeScript
+    - name: Compile TypeScript
+      run: npx tsc
+
+    # Step 5: Run Jest tests
+    - name: Run tests
+      run: npx jest
