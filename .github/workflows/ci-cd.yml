@@ -1,5 +1,6 @@
 name: Simple CI for Smart Agriculture Pipeline
 
+# Trigger the workflow on push or pull requests to the main branch
 on:
   push:
     branches:
@@ -9,28 +10,49 @@ on:
       - main
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
+    name: Build TypeScript Project
 
     steps:
-    # Step 1: Checkout the repository
-    - name: Checkout repository
-      uses: actions/checkout@v3  # Updated to version 3 to use a newer Node version
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3  # Updated to v3
 
-    # Step 2: Set up Node.js environment
-    - name: Set up Node.js
-      uses: actions/setup-node@v3  # Updated to version 3 to use a newer Node version
-      with:
-        node-version: '14'
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3  # Updated to v3
+        with:
+          node-version: '20'  # Updated to use Node.js version 20
 
-    # Step 3: Install dependencies
-    - name: Install dependencies
-      run: npm install
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
 
-    # Step 4: Compile TypeScript
-    - name: Compile TypeScript
-      run: npx tsc
+      # Step 4: Compile TypeScript
+      - name: Compile TypeScript
+        run: npx tsc
 
-    # Step 5: Run Jest tests
-    - name: Run tests
-      run: npx jest
+  test:
+    runs-on: ubuntu-latest
+    name: Run Tests
+    needs: build
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3  # Updated to v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3  # Updated to v3
+        with:
+          node-version: '20'  # Updated to use Node.js version 20
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run Jest tests
+      - name: Run tests
+        run: npx jest
