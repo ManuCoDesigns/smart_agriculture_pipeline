@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import CropMonitor from './cropMonitoring/CropMonitor';
 import IrrigationSystem from './irrigation/IrrigationSystem';
 import LivestockMonitor from './livestock/LivestockMonitor';
@@ -14,12 +14,12 @@ const livestockMonitor = new LivestockMonitor('livestock-1', 'RFID1234', 'Health
 const greenhouseControl = new GreenhouseControl('greenhouse-1', 25, 70, 400);
 
 // Add a simple route to check if the server is running
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   res.send('Smart Agriculture System is Running!');
 });
 
 // Additional endpoint for testing components
-app.get('/status', (req, res) => {
+app.get('/status', (req: Request, res: Response) => {
   cropMonitor.checkCropStatus();
   irrigationSystem.adjustWaterFlow();
   livestockMonitor.checkHealth();
