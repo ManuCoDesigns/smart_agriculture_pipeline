@@ -1,6 +1,5 @@
 name: Simple CI for Smart Agriculture Pipeline
 
-# Trigger the workflow on push or pull requests to the main branch
 on:
   push:
     branches:
@@ -16,11 +15,11 @@ jobs:
     steps:
     # Step 1: Checkout the repository
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3  # Updated to version 3 to use a newer Node version
 
     # Step 2: Set up Node.js environment
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3  # Updated to version 3 to use a newer Node version
       with:
         node-version: '14'
 
